@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page Title -->
+    <title>CyberShield — Cybersecurity Awareness</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+
+<style>
+:root{
+  --bg:#f5f0e8;--surface:#ede8df;--card:#fff;
+  --accent:#2d6a4f;--accent2:#b5451b;--accent3:#5c4a2a;
+  --text:#2c2416;--muted:#7a6d5a;
+  --border:rgba(44,36,22,.12)
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 4rem;
+  background:rgba(245,240,232,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border)
+}
+.logo{font-family:'Space Mono',monospace;font-size:1.1rem;color:var(--accent);letter-spacing:2px}
+.logo span{color:var(--accent2)}
+nav ul{list-style:none;display:flex;gap:2.5rem}
+nav a{
+  color:var(--muted);text-decoration:none;
+  font-size:.85rem;letter-spacing:1px;text-transform:uppercase;
+  transition:.3s
+}
+nav a:hover{color:var(--accent)}
+
+/* SECTIONS */
+section,#media,#contact{
+  position:relative;z-index:1;
+  padding:6rem 4rem;
+  max-width:1200px;margin:auto
+}
+.divider{height:1px;background:var(--border);max-width:1200px;margin:auto}
+
+.section-label{
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;
+  margin-bottom:.8rem
+}
+.section-title{
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:800;margin-bottom:1rem
+}
+.section-sub{
+  color:var(--muted);line-height:1.7;
+  max-width:600px;margin-bottom:3rem
+}
+
+/* HERO */
+#home{
+  height:100vh;width:100vw;
+  position:relative;
+  left:50%;right:50%;
+  margin-left:-50vw;margin-right:-50vw;
+  display:flex;
+  align-items:center;justify-content:center;
+  text-align:center;padding:2rem;
+  background:url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  max-width:none;
+}
+#home::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(20,15,10,.65)
+}
+#home>div{position:relative;z-index:1}
+#home h1{color:#f5f0e8}
+#home .hero-desc{color:rgba(245,240,232,.75)}
+#home .badge{
+  background:rgba(245,240,232,.1);
+  border-color:rgba(245,240,232,.3);
+  color:rgba(245,240,232,.9)
+}
+.badge{
+  display:inline-block;
+  background:rgba(45,106,79,.1);
+  border:1px solid rgba(45,106,79,.3);
+  color:var(--accent);
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;letter-spacing:3px;
+  padding:.4rem 1rem;margin-bottom:1.5rem;
+  animation:fadeDown .6s ease both
+}
+h1{
+  font-size:clamp(2.8rem,7vw,5.5rem);
+  font-weight:800;line-height:1.05;
+  margin-bottom:1.5rem;
+  animation:fadeUp .8s .2s ease both
+}
+h1 .line2{color:var(--accent);display:block}
+.hero-desc{
+  max-width:550px;margin:auto auto 2rem;
+  color:var(--muted);line-height:1.7;
+  animation:fadeUp .8s .4s ease both
+}
+.btn,.btn-submit{
+  display:inline-block;padding:.9rem 2rem;
+  background:var(--accent);color:var(--bg);
+  font-family:'Space Mono',monospace;
+  font-size:.8rem;letter-spacing:2px;
+  font-weight:700;border:none;cursor:pointer;
+  transition:.3s
+}
+.btn:hover,.btn-submit:hover{
+  background:var(--accent3);
+  transform:translateY(-2px);
+  box-shadow:0 4px 20px rgba(44,36,22,.2)
+}
+
+/* GRID CARDS */
+.threats-grid,.tips-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:1.5rem
+}
+.threat-card,.tip-card,.contact-wrapper{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:2rem;transition:.3s
+}
+.threat-card:hover,.tip-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(45,106,79,.4)
+}
+.tip-card{display:flex;gap:1rem}
+.tip-num{
+  font-family:'Space Mono',monospace;
+  font-size:2rem;font-weight:700;
+  color:rgba(45,106,79,.25);
+  min-width:40px
+}
+
+/* MEDIA */
+#media{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center
+}
+.media-box{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:2.5rem;text-align:center
+}
+.media-stat{
+  display:flex;justify-content:space-around;
+  margin-top:1.5rem;padding-top:1.5rem;
+  border-top:1px solid var(--border)
+}
+.stat h4{
+  font-family:'Space Mono',monospace;
+  font-size:1.5rem;color:var(--accent)
+}
+.stat p{font-size:.75rem;color:var(--muted)}
+
+.alert-box{
+  background:rgba(181,69,27,.07);
+  border:1px solid rgba(181,69,27,.25);
+  padding:1.2rem 1.5rem;
+  margin-bottom:1rem;
+  display:flex;gap:1rem
+}
+
+/* CONTACT */
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;padding:3rem
+}
+.form-group{margin-bottom:1rem}
+.form-group label{
+  display:block;
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;letter-spacing:2px;
+  color:var(--muted);margin-bottom:.5rem
+}
+.form-group input,.form-group textarea{
+  width:100%;background:var(--surface);
+  border:1px solid var(--border);
+  padding:.8rem 1rem;font-size:.9rem;
+  outline:none
+}
+.form-group input:focus,
+.form-group textarea:focus{border-color:var(--accent)}
+textarea{height:110px}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:2rem 4rem;
+  display:flex;justify-content:space-between;
+  align-items:center
+}
+footer p{
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;color:var(--muted)
+}
+
+/* ANIMATION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(25px);transition:.7s}
+.reveal.visible{opacity:1;transform:none}
+
+/* ADDITIONAL STYLES */
+.threat-icon{font-size:2rem;display:block;margin-bottom:1rem}
+.threat-card h3{font-size:1.1rem;font-weight:700;margin-bottom:.6rem}
+.threat-card p{color:var(--muted);font-size:.9rem;line-height:1.6}
+.severity{
+  display:inline-block;margin-top:1rem;
+  font-family:'Space Mono',monospace;
+  font-size:.65rem;letter-spacing:2px;
+  padding:.25rem .7rem;border:1px solid
+}
+.severity.critical{color:#8b1a1a;border-color:rgba(139,26,26,.4);background:rgba(139,26,26,.1)}
+.severity.high{color:var(--accent2);border-color:rgba(181,69,27,.4);background:rgba(181,69,27,.07)}
+.severity.medium{color:#b58a1b;border-color:rgba(181,138,27,.4);background:rgba(181,138,27,.07)}
+.tip-card h3{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.tip-card p{color:var(--muted);font-size:.88rem;line-height:1.6}
+.hero-stats{
+  display:flex;justify-content:center;gap:3rem;
+  margin-top:3rem;padding-top:3rem;
+  border-top:1px solid var(--border);
+  animation:fadeUp .8s .6s ease both
+}
+.hero-stat h3{font-family:'Space Mono',monospace;font-size:1.8rem;color:var(--accent2);margin-bottom:.3rem}
+.hero-stat p{font-size:.8rem;color:var(--muted)}
+.alert-box strong{display:block;margin-bottom:.3rem}
+.alert-box p{color:var(--muted);font-size:.85rem;line-height:1.5}
+.bar-chart{margin-bottom:1rem}
+.bar-label{
+  display:flex;justify-content:space-between;
+  font-size:.75rem;color:var(--muted);
+  font-family:'Space Mono',monospace;margin-bottom:.4rem
+}
+.bar-track{height:8px;background:var(--surface)}
+.bar-fill{height:100%;background:var(--accent)}
+.bar-fill.red{background:var(--accent2)}
+.contact-info h3{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
+.contact-info p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem}
+.contact-detail{display:flex;gap:.8rem;margin-bottom:.8rem;font-family:'Space Mono',monospace;font-size:.8rem;color:var(--muted)}
+.form-group select{
+  width:100%;background:var(--surface);
+  border:1px solid var(--border);
+  padding:.8rem 1rem;font-size:.9rem;
+  outline:none;color:var(--text)
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  nav ul{display:none}
+  section,#media,#contact{padding:4rem 1.5rem}
+  #media,.contact-wrapper{grid-template-columns:1fr}
+  .hero-stats{flex-direction:column;gap:1.5rem;align-items:center}
+  .form-row{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:1rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">CYBER<span>SHIELD</span></div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div>
+    <div class="badge">// CYBERSECURITY AWARENESS PLATFORM</div>
+    <h1>
+      Stay Safe.<br>
+      <span class="line2">Stay Informed.</span>
+    </h1>
+    <p class="hero-desc">
+      In a world where cyber threats evolve every second, awareness is your strongest defense. Learn to identify, prevent, and respond to digital attacks before they happen.
+    </p>
+    <a href="#projects" class="btn">View Projects</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">Projects</p>
+  <h2 class="section-title reveal">Our Work</h2>
+  <p class="section-sub reveal">A collection of cybersecurity awareness campaigns, tools, and initiatives we have built to help individuals and organizations stay protected.</p>
+
+  <div class="threats-grid">
+    <div class="threat-card reveal">
+      <span class="threat-icon">🔐</span>
+      <h3>Password Checker</h3>
+      <p>A simple tool that checks if your password is strong or weak. Made using basic HTML, CSS, and JavaScript as a first coding project.</p>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">📋</span>
+      <h3>Cybersecurity Quiz</h3>
+      <p>A short multiple-choice quiz about online safety tips. Built to practice what I learned in school about staying safe on the internet.</p>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">🌐</span>
+      <h3>This Website</h3>
+      <p>My first full website project. I designed and coded it from scratch to learn HTML and CSS while sharing cybersecurity awareness.</p>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">📝</span>
+      <h3>Safety Tips Poster</h3>
+      <p>A digital poster I made for a school project listing the top 10 things students can do to protect themselves online.</p>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">📊</span>
+      <h3>Survey on Cyber Habits</h3>
+      <p>A Google Forms survey I created to find out how many classmates use strong passwords and two-factor authentication.</p>
+    </div>
+    <div class="threat-card reveal">
+      <span class="threat-icon">🎤</span>
+      <h3>Class Presentation</h3>
+      <p>A PowerPoint presentation I gave to my class about the most common cyber threats and how students can avoid them.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BLOG -->
+<section id="blog">
+  <p class="section-label reveal">Blog</p>
+  <h2 class="section-title reveal">Latest Articles</h2>
+  <p class="section-sub reveal">Stay up to date with the latest cybersecurity news, tips, and in-depth guides from our team of security awareness advocates.</p>
+
+  <div class="tips-grid">
+    <div class="tip-card reveal">
+      <span class="tip-num">01</span>
+      <div>
+        <h3>How to Spot a Phishing Email in 2024</h3>
+        <p>Phishing tactics have evolved. Learn the newest red flags and techniques attackers use to fool even tech-savvy users into clicking malicious links.</p>
+      </div>
+    </div>
+    <div class="tip-card reveal">
+      <span class="tip-num">02</span>
+      <div>
+        <h3>Why Small Businesses Are Easy Targets</h3>
+        <p>SMEs often lack dedicated IT security staff. We break down the most common attack vectors used against small businesses and how to close those gaps.</p>
+      </div>
+    </div>
+    <div class="tip-card reveal">
+      <span class="tip-num">03</span>
+      <div>
+        <h3>The Truth About Public Wi-Fi Risks</h3>
+        <p>That free coffee shop Wi-Fi could cost you more than you think. Here's what actually happens on unsecured networks and how to protect yourself.</p>
+      </div>
+    </div>
+    <div class="tip-card reveal">
+      <span class="tip-num">04</span>
+      <div>
+        <h3>Password Managers: Are They Safe?</h3>
+        <p>Many people distrust password managers — but are they actually safer than remembering passwords yourself? We look at the evidence and top options.</p>
+      </div>
+    </div>
+    <div class="tip-card reveal">
+      <span class="tip-num">05</span>
+      <div>
+        <h3>What To Do After a Data Breach</h3>
+        <p>Your email or account was part of a breach. Don't panic — here's a clear, step-by-step action plan to minimize damage and secure your accounts fast.</p>
+      </div>
+    </div>
+    <div class="tip-card reveal">
+      <span class="tip-num">06</span>
+      <div>
+        <h3>Cybersecurity for Remote Workers</h3>
+        <p>Working from home introduces new risks. Learn how to secure your home network, use work tools safely, and avoid common remote work security mistakes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal">Get in Touch</p>
+  <h2 class="section-title reveal">Report a Threat</h2>
+  <p class="section-sub reveal">Spotted suspicious activity? Want to learn more about protecting your organization? Reach out to our cybersecurity awareness team.</p>
+
+  <div class="contact-wrapper reveal">
+    <div class="contact-info">
+      <h3>We're Here to Help</h3>
+      <p>Whether you've encountered a phishing attempt, suspect a breach, or want to improve your organization's security posture — our team is ready to guide you.</p>
+      <div class="contact-detail">
+        <span>📧</span>
+        <span>info@cybershield.ph</span>
+      </div>
+      <div class="contact-detail">
+        <span>📞</span>
+        <span>+63 (2) 8888-CYBER</span>
+      </div>
+      <div class="contact-detail">
+        <span>📍</span>
+        <span>Pasig City, NCR, Philippines</span>
+      </div>
+      <div class="contact-detail">
+        <span>🕐</span>
+        <span>Mon–Fri, 9AM–6PM PHT</span>
+      </div>
+    </div>
+    <div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Juan">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="dela Cruz">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="juan@example.com">
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select>
+          <option>Report a Phishing Attempt</option>
+          <option>Report Suspicious Activity</option>
+          <option>Request a Security Assessment</option>
+          <option>General Inquiry</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Describe what you observed..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="this.textContent='Sent!';setTimeout(()=>this.textContent='Send Report',2000)">Send Report</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 CyberShield Philippines. Built for awareness.</p>
+  <p>// Stay safe. Stay vigilant.</p>
+</footer>
+
+<script>
+var reveals = document.querySelectorAll('.reveal');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+},{threshold:0.1});
+reveals.forEach(function(el){ observer.observe(el); });
+</script>
+
+</body>
+</html>
